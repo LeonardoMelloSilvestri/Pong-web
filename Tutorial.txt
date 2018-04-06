@@ -1,0 +1,2 @@
+O bloco da esquerda é controlado pelas teclas W e S.
+O bloco da direita é controlado pelas telas Seta para cima e Seta para baixo.
