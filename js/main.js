@@ -1,11 +1,9 @@
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 
-player = new Player();
+player1 = new Player1();
 player2 = new Player2();
 ball = new Ball();
-colide = new Colide();
-statistics = new Statistics();
 
 function init() {
 	
@@ -13,26 +11,29 @@ function init() {
 }
 
 function update(){
-	player.move();
-	player2.move();
 	ball.move();
-	colide.ballMargins();
-	colide.ballPlayer();
-	colide.ballPlayer2();
+	ball.collidePlayers();
+	ball.collideBounds();
+	ball.gameOver();
+	player1.move();
+	player2.move();
 }
 
-function draw(){
+function render(){
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	player.draw();
+	player1.draw();
 	player2.draw();
 	ball.draw();
-	statistics.draw();
+	ctx.fillStyle = "White";
+	ctx.font = "30px Cursive";
+	ctx.fillText("Score: " + player1Score, 50, 30)
+	ctx.fillText("Score: " + player2Score, 830, 30)
 }
 
 function loop(){
 	window.requestAnimationFrame(loop, canvas);
 	update();
-	draw();
+	render();
 }
 
 init();
